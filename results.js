@@ -71,9 +71,7 @@ function buildTable(data) {
 
         // Show the initial columns
         columns.forEach(col => {
-            if (uncheckedColumns.indexOf(col) === -1) {
                 filterColumn(col);
-            }
         });
     }
 }
