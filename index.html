@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="cs">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Databáze ČSTS</title>
-  </head>
-  <body>
-    <h1 class="width">Databáze ČSTS</h1>
-    <div class="width input-box">
-        <div class="description">
-          Zadejte jméno nebo IDT
-        </div>
-        <input type="text" id="input" name="input" minlength="1" maxlength="50">
-        <button type="button" id="submit" class="btn">Vyhledat</button>
-        <div id="msg" class="description"></div>
-        <button type="button" id="show-filters" class="btn">Ukázat filtry</button>
-        <div id="filters" class="width" style="display: none;">
-        </div>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Databáze ČSTS</title>
+</head>
+
+<body>
+  <h1 class="width">Databáze ČSTS</h1>
+  <div class="width input-box">
+    <div class="description">
+      Zadejte jméno nebo IDT
     </div>
-    <div id="results"></div>
-    <script src="results.js" type="module"></script>
-    <script src="filters.js" type="module"></script>
-  </body>
+    <input type="text" id="input" name="input" minlength="1" maxlength="50">
+    <button type="button" id="submit" class="btn">Vyhledat</button>
+    <div id="msg" class="description"></div>
+    <button type="button" id="show-filters" class="btn">Ukázat filtry</button>
+    <div id="filters" class="width" style="display: none;">
+      Sloupcové filtry
+      <div id="column-filters"></div>
+      Řádkové filtry
+      <div id="row-filters"></div>
+    </div>
+  </div>
+  <div id="results"></div>
+  <script src="results.js" type="module"></script>
+  <script src="column-filters.js" type="module"></script>
+  <script src="filters.js"></script>
+</body>
+
 </html>

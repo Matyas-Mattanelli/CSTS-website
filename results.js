@@ -1,4 +1,4 @@
-import filterTable from "./filters.js"; // Import the function for filtering the table
+import filterColumn from "./column-filters.js"; // Import the function for filtering the table
 import { columns, uncheckedColumns } from "./columns.js"; // Import column names
 
 // Get the div for showing the results
@@ -69,7 +69,7 @@ function buildTable(data) {
         // Show the initial columns
         columns.forEach(col => {
             if (uncheckedColumns.indexOf(col) === -1) {
-                filterTable(col);
+                filterColumn(col);
             }
         });
     }
