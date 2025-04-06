@@ -24,6 +24,7 @@ function buildTable(data) {
         // Create a table to store the results
         const table = document.createElement("table");
         table.className = "school"
+        const thead = document.createElement("thead");
         const headerRow = document.createElement("tr"); // Create a header row
 
         // Add the headers
@@ -32,7 +33,11 @@ function buildTable(data) {
             headerCol.textContent = col;
             headerRow.appendChild(headerCol);
         });
-        table.appendChild(headerRow);
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        // Initiate a body for the table
+        const tbody = document.createElement("tbody");
 
         // Add the data for each row
         data.forEach(
@@ -50,11 +55,12 @@ function buildTable(data) {
                 );
 
                 // Add the row to the table
-                table.appendChild(tr);
+                tbody.appendChild(tr);
             }
         );
 
         // Show the table
+        table.appendChild(tbody);
         divResults.appendChild(table);
 
         // Filter the columns

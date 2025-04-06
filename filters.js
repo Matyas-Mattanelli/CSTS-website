@@ -45,7 +45,7 @@ function filterTable(col) {
     const filter = document.getElementById(col.toLowerCase().replace(" ", "_").replace("/", ""));
     
     // Find the corresponding cells
-    const cells = document.querySelectorAll(`table tr :is(td, th):nth-child(${columns.indexOf(col)+1})`);
+    const cells = document.querySelectorAll(`table :is(td, th):nth-child(${columns.indexOf(col)+1})`);
     
     // Hide or show the cells
     cells.forEach(cell => {
