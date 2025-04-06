@@ -1,4 +1,5 @@
 import filterColumn from "./column-filters.js"; // Import the function for filtering the table
+import addOptions from "./row-filters.js"; // Import the function adding options to the row filters
 import { columns, uncheckedColumns } from "./columns.js"; // Import column names
 
 // Get the div for showing the results
@@ -11,6 +12,9 @@ const input = document.getElementById("input");
 // Get the submit button
 const submitBtn = document.getElementById("submit");
 
+// Initialize an object for storing unique options for each column
+const optionsMapping = {};
+
 // Define a function building a table from the given data
 function buildTable(data) {
     // Check if data was obtained
@@ -22,6 +26,11 @@ function buildTable(data) {
         const currentTable = document.querySelector("table");
         if (currentTable != null) {
             currentTable.remove();
+        }
+
+        // Clear the options mapping for the new table
+        for (let col of columns) { // Each column has an entry with an empty object
+            optionsMapping[col] = {};
         }
 
         // Create a table to store the results
@@ -45,18 +54,27 @@ function buildTable(data) {
 
         // Add the data for each row
         data.forEach(
-            row => {
+            (row, idx_row) => {
                 // Create the row
                 const tr = document.createElement('tr');
+                tr.classList = "row";
 
                 // Add the cells
                 row.forEach(
-                    cell => {
+                    (cell, idx) => {
+                        // Create the cell
                         const td = document.createElement('td');
                         td.textContent = cell;
                         td.className = "cell cell-hidden"; // At the start all cells are hidden
                         td.style.display = "none"; // At the start all cells are hidden
                         tr.appendChild(td);
+
+                        // Add the value to the options mapping
+                        if (cell in optionsMapping[columns[idx]]) {
+                            optionsMapping[columns[idx]][cell].push(idx_row); // Add the index of the current row to the mapping
+                        } else {
+                            optionsMapping[columns[idx]][cell] = [idx_row]; // Initialize the array with row indices and add the current index
+                        }
                     }
                 );
 
@@ -73,6 +91,9 @@ function buildTable(data) {
         columns.forEach(col => {
                 filterColumn(col);
         });
+
+        // Add all options to row filters
+        addOptions(optionsMapping);
     }
 }
 
@@ -126,11 +147,19 @@ function showResults() {
     // Get the user input
     const inputText = input.value;
 
-    // Specify that the results are being fetched
-    divMsg.textContent = `Searching for ${inputText}...`;
+    // Check if the input is not empty
+    if (inputText === "") {
+        // Specify that the input is empty
+        divMsg.textContent = "Vyhledávací pole je prázdné";    
+        submitBtn.disabled = false; // Enable the submit button again
 
-    // Fetch the data and build the table
-    fetchData(inputText, buildTable);
+    } else {
+        // Specify that the results are being fetched
+        divMsg.textContent = `Searching for ${inputText}...`;
+
+        // Fetch the data and build the table
+        fetchData(inputText, buildTable);
+    }
 }
 
 // Bind the showResults function to the appropriate button

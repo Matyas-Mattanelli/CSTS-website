@@ -77,7 +77,7 @@ h1 {
     display: block;
 }
 
-.filters-label {
+.filters-col-label {
     margin-right: 20px;
 }
 
@@ -93,17 +93,50 @@ h1 {
     border-radius: 5px;
 }
 
+#row-filters {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(128, 128, 128, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-row-filters {
+    width: fit-content;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-row-filters-active {
+    background-color: black;
+    color: white;
+}
+
+.row-options {
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    z-index: 2;
+    max-height: 300px;
+    overflow-y: auto;
+    text-align: left;
+}
+
 /* Style the table */
 
-.cell {
+.cell, .row {
     transition: opacity 0.5s ease-in-out;
 }
 
-.cell-hidden {
+.cell-hidden, .row-hidden {
     opacity: 0;
 }
 
-.cell-shown { 
+.cell-shown, .row-shown { 
     opacity: 1;
 }
 
@@ -126,7 +159,7 @@ thead tr th {
     color: white;
     position: sticky;
     top: 0;
-    z-index: 3;
+    z-index: 1;
 }
 
 table {
