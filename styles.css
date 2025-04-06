@@ -71,8 +71,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     overflow-x: auto;
-    overflow-y: auto;
-    max-height: 90vh;
+    margin-bottom: 30px;
 }
 
 th, td {
@@ -81,6 +80,7 @@ th, td {
     text-align: center;
     border-radius: 10px;
     backdrop-filter: blur(5px);
+    cursor: default;
 }
 
 th {
@@ -96,7 +96,12 @@ table {
     margin-right: auto;
 }
 
+table tr:nth-child(odd) {
+    background-color: rgb(128, 128, 128, 0.4);
+}
+
 table tr:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color:black;
+    color: white;
 }
 
