@@ -8,6 +8,9 @@ const divMsg = document.getElementById("msg");
 // Get the input element
 const input = document.getElementById("input");
 
+// Get the submit button
+const submitBtn = document.getElementById("submit");
+
 // Define a function building a table from the given data
 function buildTable(data) {
     // Check if data was obtained
@@ -102,9 +105,13 @@ function fetchData(input, callback) {
                 callback(data); // Build the table if some results were found
             }
         })
+        .then(() => {
+            submitBtn.disabled = false; // Enable the button again
+        })
         .catch(error => { // In case any unexpected error happens
             printNoResults(input);
             console.error(`Failed to fetch: `, error);
+            submitBtn.disabled = false; // Enable the button again
         });
 }
 
@@ -115,6 +122,9 @@ function printNoResults(input) {
 
 // Define a function fetching the data and building the table upon a button click
 function showResults() {
+    // Disable the button to prevent spamming
+    submitBtn.disabled = true;
+
     // Get the user input
     const inputText = input.value;
 
@@ -126,4 +136,4 @@ function showResults() {
 }
 
 // Bind the showResults function to the appropriate button
-document.getElementById("submit").addEventListener("click", showResults);
+submitBtn.addEventListener("click", showResults);

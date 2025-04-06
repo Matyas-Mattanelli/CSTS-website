@@ -6,6 +6,7 @@ const filterBtn = document.getElementById('show-filters');
 
 // Define a function showing or hiding the filters
 function showFilters() {
+
     // Hide if shown
     if (filters.style.display === "block") {
         filters.style.display = "none";
