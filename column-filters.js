@@ -34,7 +34,7 @@ function buildColumnFilters() {
         const label = document.createElement('label');
         label.for = colClean;
         label.textContent = col;
-        label.className = "filters-label";
+        label.className = "filters-col-label";
         columnFilters.appendChild(label);
     });
 }
@@ -62,15 +62,17 @@ function filterColumn(col) {
 
             // Hide the column
         } else {
-            // Perform the transition
-            cell.classList.remove("cell-shown");
-            cell.classList.add("cell-hidden");
+            // Do only if the element is not hidden yet
+            if (cell.classList.contains("cell-shown")) {
+                // When the transition finishes, remove the element
+                cell.addEventListener("transitionend", () => {
+                    cell.style.display = "none";
+                }, { once: true });
 
-            // When the transition finishes, remove the element
-            cell.addEventListener("transitionend", () => {
-                cell.style.display = "none";
-                console.log(col);
-            }, { once: true });
+                // Perform the transition
+                cell.classList.remove("cell-shown");
+                cell.classList.add("cell-hidden");
+            }
         }
     });
 }
