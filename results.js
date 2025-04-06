@@ -13,7 +13,7 @@ function buildTable(data) {
     // Check if data was obtained
     if (data != null) {
         // Indicate that the results are displayed
-        divMsg.textContent = `Zobrazuji výsledky pro ${input.value}`;
+        divMsg.textContent = `Zobrazuji ${data.length} soutěží pro ${input.value}`;
 
         // Destroy the table if it exists
         const currentTable = document.querySelector("table");
