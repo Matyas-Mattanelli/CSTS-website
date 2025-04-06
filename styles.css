@@ -5,6 +5,8 @@ body {
     font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Define the default width */
+
 .width {
     width: 100%;
     margin-left: auto;
@@ -13,6 +15,8 @@ body {
     flex-direction: column;
     max-width: 800px;
 }
+
+/* Style the input */
 
 .description {
     margin-bottom: 10px;
@@ -50,7 +54,7 @@ body {
     cursor: pointer;
 }
 
-.input {
+.input-box {
     background-color: rgb(128, 128, 128, 0.4);
     text-align: center;
     padding: 5px;
@@ -66,8 +70,9 @@ body {
     margin-right: 20px;
 }
 
+/* Style the table */
+
 .cell {
-    /* opacity: 1; */
     transition: opacity 0.5s ease-in-out;
 }
 
@@ -107,7 +112,7 @@ table {
 }
 
 table tr:nth-child(odd) {
-    background-color: rgb(128, 128, 128, 0.4);
+    background-color: rgb(128, 128, 128, 0.4); /* Zebra table for better visibility */
 }
 
 table tr:hover {

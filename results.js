@@ -1,5 +1,5 @@
 import filterTable from "./filters.js"; // Import the function for filtering the table
-import {columns, uncheckedColumns} from "./columns.js"; // Import column names
+import { columns, uncheckedColumns } from "./columns.js"; // Import column names
 
 // Get the div for showing the results
 const divResults = document.getElementById("results");
@@ -30,8 +30,8 @@ function buildTable(data) {
         columns.forEach(col => {
             const headerCol = document.createElement("th");
             headerCol.textContent = col;
-            headerCol.className = "cell cell-hidden";
-            headerCol.style.display = "none";
+            headerCol.className = "cell cell-hidden"; // At the start all cells are hidden
+            headerCol.style.display = "none"; // At the start all cells are hidden
             headerRow.appendChild(headerCol);
         });
         thead.appendChild(headerRow);
@@ -51,8 +51,8 @@ function buildTable(data) {
                     cell => {
                         const td = document.createElement('td');
                         td.textContent = cell;
-                        td.className = "cell cell-hidden";
-                        td.style.display = "none";
+                        td.className = "cell cell-hidden"; // At the start all cells are hidden
+                        td.style.display = "none"; // At the start all cells are hidden
                         tr.appendChild(td);
                     }
                 );
@@ -62,12 +62,12 @@ function buildTable(data) {
             }
         );
 
-        // Show the table
+        // Add the table to the DOM
         table.appendChild(tbody);
         divResults.appendChild(table);
 
         // Show the initial columns
-        columns.forEach(col => { 
+        columns.forEach(col => {
             if (uncheckedColumns.indexOf(col) === -1) {
                 filterTable(col);
             }
@@ -88,21 +88,21 @@ function fetchData(input, callback) {
     // Try to get the data
     fetch(reqText)
         .then(response => {
-            if (!response.ok) {
+            if (!response.ok) { // If the response is not ok, print that no results are found
                 printNoResults(input);
                 return null;
             } else {
-                return response.json();
+                return response.json(); // Return the json if everything is ok
             }
         })
         .then(data => {
-            if (data.length === 0) {
+            if (data.length === 0) { // If no results were found, print it
                 printNoResults(input);
             } else {
-                callback(data);
+                callback(data); // Build the table if some results were found
             }
         })
-        .catch(error => {
+        .catch(error => { // In case any unexpected error happens
             printNoResults(input);
             console.error(`Failed to fetch: `, error);
         });
@@ -126,4 +126,4 @@ function showResults() {
 }
 
 // Bind the showResults function to the appropriate button
-document.getElementById("submit").addEventListener("click", showResults)
+document.getElementById("submit").addEventListener("click", showResults);
