@@ -66,6 +66,19 @@ body {
     margin-right: 20px;
 }
 
+.cell {
+    /* opacity: 1; */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.cell-hidden {
+    opacity: 0;
+}
+
+.cell-shown { 
+    opacity: 1;
+}
+
 #results {
     width: 90%;
     margin-left: auto;

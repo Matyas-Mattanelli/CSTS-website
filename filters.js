@@ -1,8 +1,5 @@
 // Import columns names
-import columns from "./columns.js"; // Import column names
-
-// Define initially unchecked columns
-const uncheckedColumns = ["IDT", "Stát", "ID soutěže", "ID eventu", "Kategorie", "Jméno eventu"];
+import {columns, uncheckedColumns} from "./columns.js"; // Import column names
 
 // Get the div containing the filters
 const filters = document.getElementById("filters");
@@ -49,21 +46,34 @@ function filterTable(col) {
     
     // Hide or show the cells
     cells.forEach(cell => {
-        cell.style.display = filter.checked === true ? 'table-cell' : 'none'
+        if (filter.checked === true) {
+            cell.style.display = "table-cell";
+            setTimeout(() => {
+                cell.classList.remove("cell-hidden");
+                cell.classList.add("cell-shown");
+            }, 10)
+        } else {
+            cell.classList.remove("cell-shown");
+            cell.classList.add("cell-hidden");
+            cell.addEventListener("transitionend", () => {
+                cell.style.display = "none";
+                console.log(col);
+            }, {once:true});
+        } 
     });
 }
 
 // Define a function showing or hiding the filters
 function showFilters() {
     // Hide if shown
-    if (filters.style.display === 'block') {
-        filters.style.display = 'none';
-        filterBtn.textContent = 'Ukázat filtry';
+    if (filters.style.display === "block") {
+        filters.style.display = "none";
+        filterBtn.textContent = "Ukázat filtry";
 
     // Show if hidden
     } else {
-        filters.style.display = 'block';
-        filterBtn.textContent = 'Skrýt filtry';
+        filters.style.display = "block";
+        filterBtn.textContent = "Skrýt filtry";
     }
 }
 

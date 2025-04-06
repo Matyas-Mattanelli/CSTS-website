@@ -1,5 +1,5 @@
 import filterTable from "./filters.js"; // Import the function for filtering the table
-import columns from "./columns.js"; // Import column names
+import {columns, uncheckedColumns} from "./columns.js"; // Import column names
 
 // Get the div for showing the results
 const divResults = document.getElementById("results");
@@ -23,7 +23,6 @@ function buildTable(data) {
 
         // Create a table to store the results
         const table = document.createElement("table");
-        table.className = "school"
         const thead = document.createElement("thead");
         const headerRow = document.createElement("tr"); // Create a header row
 
@@ -31,6 +30,8 @@ function buildTable(data) {
         columns.forEach(col => {
             const headerCol = document.createElement("th");
             headerCol.textContent = col;
+            headerCol.className = "cell cell-hidden";
+            headerCol.style.display = "none";
             headerRow.appendChild(headerCol);
         });
         thead.appendChild(headerRow);
@@ -50,6 +51,8 @@ function buildTable(data) {
                     cell => {
                         const td = document.createElement('td');
                         td.textContent = cell;
+                        td.className = "cell cell-hidden";
+                        td.style.display = "none";
                         tr.appendChild(td);
                     }
                 );
@@ -63,8 +66,12 @@ function buildTable(data) {
         table.appendChild(tbody);
         divResults.appendChild(table);
 
-        // Filter the columns
-        columns.forEach(col => { filterTable(col) });
+        // Show the initial columns
+        columns.forEach(col => { 
+            if (uncheckedColumns.indexOf(col) === -1) {
+                filterTable(col);
+            }
+        });
     }
 }
 
