@@ -15,7 +15,7 @@ function buildColumnFilters() {
         checkbox.name = colClean;
         checkbox.value = colClean;
         checkbox.id = colClean;
-        checkbox.className = "filters";
+        checkbox.className = "filter-checkbox";
 
         // Make sure only the intially selected columns are shown
         if (uncheckedColumns.indexOf(col) === -1) {
