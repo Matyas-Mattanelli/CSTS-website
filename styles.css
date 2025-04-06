@@ -16,6 +16,14 @@ body {
     max-width: 800px;
 }
 
+/* Style the headings */
+h1 {
+    box-shadow: 5px 5px 5px  rgb(128, 128, 128, 0.8);
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 /* Style the input */
 
 .description {
