@@ -1,6 +1,6 @@
 import filterColumn from "./column-filters.js"; // Import the function for filtering the table
 import addOptions from "./row-filters.js"; // Import the function adding options to the row filters
-import { columns, uncheckedColumns } from "./columns.js"; // Import column names
+import { columns, uncheckedColumns } from "../src/columns.js"; // Import column names
 
 // Get the div for showing the results
 const divResults = document.getElementById("results");

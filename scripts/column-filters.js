@@ -1,5 +1,5 @@
 // Import columns names
-import { columns, uncheckedColumns } from "./columns.js"; // Import column names
+import { columns, uncheckedColumns } from "../src/columns.js"; // Import column names
 
 // Get the div containing the column filters
 const columnFilters = document.getElementById("column-filters");
