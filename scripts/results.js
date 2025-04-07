@@ -89,7 +89,7 @@ function buildTable(data) {
 
         // Show the initial columns
         columns.forEach(col => {
-                filterColumn(col);
+            filterColumn(col);
         });
 
         // Add all options to row filters
@@ -99,38 +99,49 @@ function buildTable(data) {
 
 // Define a function fetching the data 
 function fetchData(input, callback) {
-    // Specify the request based on whether IDT or name was specified
-    let reqText;
-    if (isNaN(input)) {
-        reqText = `http://127.0.0.1:8000/name/${encodeURI(input)}`;
-    } else {
-        reqText = `http://127.0.0.1:8000/IDT/${input}`;
-    };
+    fetch("src/config.json").then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to load config');
+        }
+        return response.json();  // Parse the config JSON
+    })
+        .then(config => {
+            // Specify the request based on whether IDT or name was specified
+            let reqText;
+            if (isNaN(input)) {
+                reqText = `${config["api_url"]}/name/${encodeURI(input)}`;
+            } else {
+                reqText = `${config["api_url"]}/IDT/${input}`;
+            };
 
-    // Try to get the data
-    fetch(reqText)
-        .then(response => {
-            if (!response.ok) { // If the response is not ok, print that no results are found
-                printNoResults(input);
-                return null;
-            } else {
-                return response.json(); // Return the json if everything is ok
-            }
+            // Try to get the data
+            fetch(reqText)
+                .then(response => {
+                    if (!response.ok) { // If the response is not ok, print that no results are found
+                        printNoResults(input);
+                        return null;
+                    } else {
+                        return response.json(); // Return the json if everything is ok
+                    }
+                })
+                .then(data => {
+                    if (data.length === 0) { // If no results were found, print it
+                        printNoResults(input);
+                    } else {
+                        callback(data); // Build the table if some results were found
+                    }
+                })
+                .then(() => {
+                    submitBtn.disabled = false; // Enable the button again
+                })
+                .catch(error => { // In case any unexpected error happens
+                    printNoResults(input);
+                    console.error(`Failed to fetch: `, error);
+                    submitBtn.disabled = false; // Enable the button again
+                });
         })
-        .then(data => {
-            if (data.length === 0) { // If no results were found, print it
-                printNoResults(input);
-            } else {
-                callback(data); // Build the table if some results were found
-            }
-        })
-        .then(() => {
-            submitBtn.disabled = false; // Enable the button again
-        })
-        .catch(error => { // In case any unexpected error happens
-            printNoResults(input);
-            console.error(`Failed to fetch: `, error);
-            submitBtn.disabled = false; // Enable the button again
+        .catch(error => {
+            console.error('Error:', error);  // Handle errors
         });
 }
 
@@ -150,7 +161,7 @@ function showResults() {
     // Check if the input is not empty
     if (inputText === "") {
         // Specify that the input is empty
-        divMsg.textContent = "Vyhledávací pole je prázdné";    
+        divMsg.textContent = "Vyhledávací pole je prázdné";
         submitBtn.disabled = false; // Enable the submit button again
 
     } else {
