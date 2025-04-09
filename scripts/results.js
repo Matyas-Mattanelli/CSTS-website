@@ -166,7 +166,7 @@ function showResults() {
 
     } else {
         // Specify that the results are being fetched
-        divMsg.textContent = `Searching for ${inputText}...`;
+        divMsg.textContent = `Vyhledávám výsledky pro ${inputText}...`;
 
         // Fetch the data and build the table
         fetchData(inputText, buildTable);
