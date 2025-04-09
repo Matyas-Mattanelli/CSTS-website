@@ -153,7 +153,6 @@ th, td {
     padding: 5px;
     text-align: center;
     backdrop-filter: blur(5px);
-    cursor: default;
 }
 
 thead tr th {
@@ -177,5 +176,9 @@ table tr:nth-child(odd) {
 table tr:hover {
     background-color:black;
     color: white;
+}
+
+.row-with-link {
+    cursor: pointer;
 }
 

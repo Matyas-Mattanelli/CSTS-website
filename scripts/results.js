@@ -58,7 +58,12 @@ function buildTable(data) {
             (row, idx_row) => {
                 // Create the row
                 const tr = document.createElement('tr');
-                tr.classList = "row";
+                tr.className = "row";
+                if (Number(row[columns.indexOf("Datum")].slice(0, 4)) >= 2018) { // Competition results are available only from 2018 onwards (blue website)
+                    tr.onclick = () => openCompetitionResults(row[columns.indexOf("ID eventu")], row[columns.indexOf("ID soutěže")]); // Open competition results upon clicking
+                    tr.classList.add("row-with-link"); // Adding a cursor pointer to signify link
+                }
+                
 
                 // Add the cells
                 row.forEach(
@@ -182,3 +187,11 @@ function showResults() {
 
 // Bind the showResults function to the appropriate button
 submitBtn.addEventListener("click", showResults);
+
+
+// Define a function opening a new tab with competition results based on the event and competition ID
+function openCompetitionResults(eventId, compId) {
+    const link = `https://www.csts.cz/dancesport/vysledky_soutezi/event/${eventId}/competition/${compId}`; // Define the link
+    window.open(link, "_blank"); // Open a new tab with the competition results
+
+}
