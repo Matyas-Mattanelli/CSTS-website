@@ -50,6 +50,7 @@ h1 {
     padding: 5px;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.6);
+    margin-top: 10px;
 }
 
 .btn:hover:enabled {
@@ -83,6 +84,7 @@ h1 {
 
 .filter-checkbox {
     accent-color: rgb(0, 0, 0);
+    cursor: pointer;
 }
 
 #column-filters {

@@ -8,6 +8,7 @@ const divMsg = document.getElementById("msg");
 
 // Get the input element
 const input = document.getElementById("input");
+const advancedSearch = document.getElementById("advanced-search"); // Get the checkbox with the indicator whether to perform advanced search
 
 // Get the submit button
 const submitBtn = document.getElementById("submit");
@@ -106,12 +107,18 @@ function fetchData(input, callback) {
         return response.json();  // Parse the config JSON
     })
         .then(config => {
+            // Specify query parameters
+            let queryParams = "";
+            if (advancedSearch.checked === true) { // Specify adavanced search if required
+                queryParams = queryParams + "?advanced=1"
+            }
+
             // Specify the request based on whether IDT or name was specified
             let reqText;
             if (isNaN(input)) {
-                reqText = `${config["api_url"]}/name/${encodeURI(input)}`;
+                reqText = `${config["api_url"]}/name/${encodeURI(input)}${queryParams}`;
             } else {
-                reqText = `${config["api_url"]}/IDT/${input}`;
+                reqText = `${config["api_url"]}/IDT/${input}${queryParams}`;
             };
 
             // Try to get the data
