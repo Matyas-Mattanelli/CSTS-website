@@ -9,29 +9,32 @@
 </head>
 
 <body>
-  <div class="width">
-    <h1>Taneční databáze</h1>
+  <div id="page-container">
+    <div class="width">
+      <h1>Taneční databáze</h1>
+    </div>
+    <div class="width input-box">
+      <div class="description">
+        Zadejte jméno nebo IDT
+      </div>
+      <input type="text" id="input" name="input" minlength="1" maxlength="50">
+      <div>
+        <input type="checkbox" name="advanced-search" value="advanced-search" id="advanced-search"
+          class="filter-checkbox">
+        <label for="advanced-search">Pokročilé vyhledávání</label>
+      </div>
+      <button type="button" id="submit" class="btn">Vyhledat</button>
+      <div id="msg" class="description"></div>
+      <button type="button" id="show-filters" class="btn">Ukázat filtry</button>
+      <div id="filters" class="width" style="display: none;">
+        Sloupcové filtry
+        <div id="column-filters"></div>
+        Řádkové filtry
+        <div id="row-filters"></div>
+      </div>
+    </div>
+    <div id="results"></div>
   </div>
-  <div class="width input-box">
-    <div class="description">
-      Zadejte jméno nebo IDT
-    </div>
-    <input type="text" id="input" name="input" minlength="1" maxlength="50">
-    <div>
-      <input type="checkbox" name="advanced-search" value="advanced-search" id="advanced-search" class="filter-checkbox">
-      <label for="advanced-search">Pokročilé vyhledávání</label>
-    </div>
-    <button type="button" id="submit" class="btn">Vyhledat</button>
-    <div id="msg" class="description"></div>
-    <button type="button" id="show-filters" class="btn">Ukázat filtry</button>
-    <div id="filters" class="width" style="display: none;">
-      Sloupcové filtry
-      <div id="column-filters"></div>
-      Řádkové filtry
-      <div id="row-filters"></div>
-    </div>
-  </div>
-  <div id="results"></div>
   <script src="scripts/results.js" type="module"></script>
   <script src="scripts/column-filters.js" type="module"></script>
   <script src="scripts/row-filters.js" type="module"></script>
