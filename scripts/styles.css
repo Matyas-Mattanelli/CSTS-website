@@ -25,7 +25,7 @@ body {
 
 /* Style the headings */
 h1 {
-    box-shadow: 5px 5px 5px  rgb(128, 128, 128, 0.8);
+    box-shadow: 5px 5px 5px  rgba(128, 128, 128, 0.8);
     width: fit-content;
     padding: 5px;
     border-radius: 5px;
@@ -63,6 +63,7 @@ h1 {
 .btn:hover:enabled {
     background-color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
+    transition: 0.5s ease;
 }
 
 .btn:active:enabled {
@@ -165,7 +166,7 @@ th, td {
 }
 
 thead tr th {
-    background-color: rgb(97, 94, 94);
+    background-color: rgb(0, 0, 0);
     color: white;
     position: sticky;
     top: 0;
@@ -173,10 +174,13 @@ thead tr th {
 }
 
 table {
-    box-shadow: 5px 5px 5px  rgb(128, 128, 128, 0.8);
     width: 100%;
     height: 100%;
     margin-bottom: 30px;
+}
+
+table .row-shown:nth-child(odd) {
+    background-color: rgb(128, 128, 128, 0.4); /* Zebra table for better visibility */
 }
 
 table tr:nth-child(odd) {
@@ -184,8 +188,9 @@ table tr:nth-child(odd) {
 }
 
 table tr:hover {
-    background-color:black;
+    background-color:rgb(97, 94, 94);
     color: white;
+    transition: 0.5s ease;
 }
 
 .row-with-link {
